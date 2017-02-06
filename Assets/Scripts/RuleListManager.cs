@@ -23,75 +23,59 @@ public class RuleListManager : MonoBehaviour {
 	}
 
 	public GameObject[] rulePrefab;  
+	public Dropdown ruleSelector;
+	public RuleComponent rootRule;
 
 	private int idCounter;
+	private int ruleType;
 	private static List<GameObject> ruleList;   
 
 	// Use this for initialization
 	void Start () {
 		idCounter = 0;
+		ruleType = 0;
 		ruleList = new List<GameObject>();  
+		if (ruleSelector) ruleSelector.onValueChanged.AddListener(delegate{
+			OnSelectChange(ruleSelector);
+		}); 
 	}     
+
+	public void OnSelectChange(Dropdown dd){
+		ruleType = dd.value;
+	}
 
 	public void UpdateVisualization(){
 		//TODO: Code visualization update
+		rootRule.SetHeight(0, 0);
 		VisualizerManager.Instance.UpdateLogic();
 		ChanceManager.Instance.UpdateText();
 	}
 
 	public int ApplyRule(long instanceNo){  
-		int ret = -1;
-
-		foreach (GameObject go in ruleList){
-			ProbabilityRule rule = go.GetComponent<ProbabilityRule>(); 
-			int currentResult = rule.GetRuleResult(instanceNo);
-
-			//and operation
-			if (currentResult == 0){
-				ret = 0;
-			} else if (currentResult == 1){
-				if (ret != 0) ret = 1;
-			}
-		}
-
-		return ret;
+		return rootRule.GetRuleResult(instanceNo);
 	}
 
-	public void AddNewRule(){
-		// Create a new copy of the prefab and set it as a child
-		GameObject newObject = Instantiate(rulePrefab[0]);
-		RectTransform newTransform = newObject.GetComponent<RectTransform>();
-		ProbabilityRule newRule = newObject.GetComponent<ProbabilityRule>();
-
-		// Set parameters, add it to the list 
-		newTransform.SetParent(this.gameObject.transform, false);
-		newRule.SetHeight(GetCurrentHeight(), 0); 
+	public void AddNewRule(){ 
+		GameObject newObject = Instantiate(rulePrefab[ruleType]);
+		RuleComponent newRule = newObject.GetComponent<RuleComponent>(); 
 		newRule.SetIndexNumber(idCounter); 
 		++idCounter;
 
-		ruleList.Add(newObject);
-		//Debug.Log(ruleList.Count);  
-	} 
+		rootRule.AddChild(newRule);
+		UpdateVisualization(); 
+	}  
 
-	public int GetCurrentHeight(){
-		return ruleList.Count;
+	public void ReturnToRoot(RuleComponent rule){
+		rootRule.AddChild(rule);
+		rule.ChangeButton();
+		UpdateVisualization(); 
 	}
 
-	public void RemoveRule(int index){
-		ruleList.RemoveAt(index);
-		int height = 0;
-		for (int i=index; i<ruleList.Count; ++i){
-			ruleList[i].GetComponent<ProbabilityRule>().SetHeight(height, 0);
-			height += 1;
+	public void ResetRuleList(){ 
+		foreach (RuleComponent rule in rootRule.children){
+			Destroy(rule.gameObject);
 		}
-		UpdateVisualization();
-	}
-
-	public void ResetRuleList(){
-		foreach (GameObject go in ruleList){
-			Destroy(go);
-		}
-		ruleList.Clear();
+		rootRule.children.Clear();
 		UpdateVisualization();
 	}
 }

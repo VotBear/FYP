@@ -23,9 +23,7 @@ public class EventListManager : MonoBehaviour {
 	}
 
 	public GameObject[] eventPrefab;
-	public Text possibleCombinationsText; 
-	public Vector2 startPos;
-	public float distance;
+	public Text possibleCombinationsText;  
 
 	private List<GameObject> eventList;  
 
@@ -80,7 +78,7 @@ public class EventListManager : MonoBehaviour {
 	}
 
 	private void SetEventParameters(RectTransform tf, ProbabilityEvent pe, int idNo){
-		tf.anchoredPosition = new Vector3(startPos.x, startPos.y - distance*idNo, 0);	
+		tf.anchoredPosition = new Vector3(0, C.P_START_HEIGHT - C.P_DISTANCE*idNo, 0);	
 		pe.SetIndexNumber(idNo);
 		Debug.Log(tf.anchoredPosition);
 		pe.SetName(FindName());

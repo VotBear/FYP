@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 public class C : MonoBehaviour {
 
-	public static float P_START_HEIGHT = -12.5f;
+	public static float P_START_HEIGHT = -10f;
 	public static float P_DISTANCE = 22f;
+	public static float P_INDENT = 8f;
+	public static float P_OPERATOR_IMG_BASEHEIGHT = -3f;
 
 	public static string EVENT_LABEL = "Event";
  

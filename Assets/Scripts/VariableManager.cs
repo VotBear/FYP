@@ -274,6 +274,10 @@ public class VariableManager : MonoBehaviour {
 		UpdateRow(1);
 	}
 
+	public void Update(){
+		if (!currentVar) CloseWindow();
+	}
+
 	public void CloseWindow(){
 		panel.SetActive(false);	
 	} 

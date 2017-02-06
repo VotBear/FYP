@@ -13,7 +13,9 @@ public class ProbabilityRule : RuleComponent {
 
 	public int logicType;  
 
-	protected virtual void Start () { 
+	protected override void Start ()
+	{
+		base.Start ();
 		logicSelector.ClearOptions();
 		logicSelector.AddOptions(C.LOGIC_OPTIONS);
 
@@ -29,6 +31,11 @@ public class ProbabilityRule : RuleComponent {
 
 	void OnDestroy() { 
 		if (logicSelector) logicSelector.onValueChanged.RemoveAllListeners(); 
+	}
+
+	public override void DeleteRule ()
+	{
+		base.DeleteRule (); 
 	}
 
 	public bool GetFirstValue(){
