@@ -22,7 +22,7 @@ public class RuleOperator : RuleComponent {
 		RuleListManager.Instance.UpdateVisualization();
 
 		operatorImage.color = operatorColor;
-		operatorText.color = operatorColor;
+		operatorText.color = Color.white; //operatorColor;
 		//add one child for adding
 	}
 

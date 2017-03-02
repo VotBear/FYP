@@ -26,6 +26,7 @@ public class ProbabilityRule : RuleComponent {
 
 	public void OnLogicChange(Dropdown logicDD){
 		this.logicType = logicDD.value; 
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 		SendMessageUpwards("UpdateVisualization"); 
 	}
 
@@ -33,9 +34,11 @@ public class ProbabilityRule : RuleComponent {
 		if (logicSelector) logicSelector.onValueChanged.RemoveAllListeners(); 
 	}
 
-	public override void DeleteRule ()
+	public override void ResetRule ()
 	{
-		base.DeleteRule (); 
+		lefVar.Reset();
+		rigVar.Reset();
+		base.ResetRule(); 
 	}
 
 	public bool GetFirstValue(){
@@ -45,11 +48,11 @@ public class ProbabilityRule : RuleComponent {
 			int trueCount = 0;
 			foreach (int val in values)	if (GetSecondValue(val)) ++trueCount;  
 			if 		(lefVar.varSelectType == C.SEL_ALL) 		return (trueCount == values.Count);
-			else if (lefVar.varSelectType == C.SEL_NONE)		return (trueCount == 0);
 			else if (lefVar.varSelectType == C.SEL_ANY)			return (trueCount >= 1);
+			else if (lefVar.varSelectType == C.SEL_NONE)		return (trueCount == 0);
 			else if (lefVar.varSelectType == C.SEL_ATLEAST)		return (trueCount >= lefVar.varSelectVal);
 			else if (lefVar.varSelectType == C.SEL_ATMOST)		return (trueCount <= lefVar.varSelectVal);
-			else if (lefVar.varSelectType == C.SEL_SPECIFIC)	return (trueCount == lefVar.varSelectVal); 
+			else if (lefVar.varSelectType == C.SEL_EXACTLY)		return (trueCount == lefVar.varSelectVal); 
 		}
 		return true;
 	}
@@ -61,23 +64,24 @@ public class ProbabilityRule : RuleComponent {
 			int trueCount = 0;
 			foreach (int val in values)	if (GetLogicValue(firstVal,val)) ++trueCount; 
 			if 		(rigVar.varSelectType == C.SEL_ALL) 		return (trueCount == values.Count);
-			else if (rigVar.varSelectType == C.SEL_NONE)		return (trueCount == 0);
 			else if (rigVar.varSelectType == C.SEL_ANY)			return (trueCount >= 1);
+			else if (rigVar.varSelectType == C.SEL_NONE)		return (trueCount == 0);
 			else if (rigVar.varSelectType == C.SEL_ATLEAST)		return (trueCount >= rigVar.varSelectVal);
 			else if (rigVar.varSelectType == C.SEL_ATMOST)		return (trueCount <= rigVar.varSelectVal);
-			else if (rigVar.varSelectType == C.SEL_SPECIFIC)	return (trueCount == rigVar.varSelectVal); 
+			else if (rigVar.varSelectType == C.SEL_EXACTLY)		return (trueCount == rigVar.varSelectVal); 
 		}
 		return true;
 	}
 
 	public bool GetLogicValue(int firstVal, int secondVal){ 
 		//Logic rules  
-		if 		(logicType == C.LOG_EQUALS)  return (firstVal == secondVal);	//Equals		(==)
-		else if (logicType == C.LOG_NEQUAL)  return (firstVal != secondVal);	//Not equal to	(!=)
-		else if (logicType == C.LOG_LARGER)  return (firstVal >  secondVal);	//Larger than	(>)
-		else if (logicType == C.LOG_SMALLER) return (firstVal <  secondVal);	//Lesser than	(<)
-		else if (logicType == C.LOG_ATLEAST) return (firstVal >= secondVal);	//At least 		(>=) 
-		else if (logicType == C.LOG_ATMOST)  return (firstVal <= secondVal);	//At most		(<=)
+		if 		(logicType == C.LOG_EQUALS)  	return (firstVal == secondVal);		//Equals		(==)
+		else if (logicType == C.LOG_NEQUAL)  	return (firstVal != secondVal);		//Not equal to	(!=)
+		else if (logicType == C.LOG_LARGER)  	return (firstVal >  secondVal);		//Larger than	(>)
+		else if (logicType == C.LOG_SMALLER) 	return (firstVal <  secondVal);		//Lesser than	(<)
+		else if (logicType == C.LOG_ATLEAST) 	return (firstVal >= secondVal);		//At least 		(>=) 
+		else if (logicType == C.LOG_ATMOST)  	return (firstVal <= secondVal);		//At most		(<=)
+		else if (logicType == C.LOG_MULTIPLE)  	return (firstVal % secondVal == 0);	//Multiple of
 		return true;
 	}
 
@@ -94,4 +98,6 @@ public class ProbabilityRule : RuleComponent {
 			else return 0;
 		} 
 	}
+
+
 }

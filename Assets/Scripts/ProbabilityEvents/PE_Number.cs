@@ -54,13 +54,13 @@ public class PE_Number : UniqueProbabilityEvent {
 	{
 		duplicate = tog; 
 		ResetAmountValues();
-		SendMessageUpwards("UpdatePossibleCombinations"); 
+		BroadcastManager.Instance.EventUpdated(); 
 	}
 
 	void UpdateTypeSize(){ 
 		typeSize = maxNumber - minNumber + 1;
 		ResetAmountValues();
-		SendMessageUpwards("UpdatePossibleCombinations");
+		BroadcastManager.Instance.EventUpdated();
 	}
 
 	void OnMinChange(InputField numIF){

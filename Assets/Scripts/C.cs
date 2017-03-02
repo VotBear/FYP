@@ -2,29 +2,82 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class C : MonoBehaviour {
+public class C {
 
 	public static float P_START_HEIGHT = -10f;
 	public static float P_DISTANCE = 22f;
 	public static float P_INDENT = 8f;
 	public static float P_OPERATOR_IMG_BASEHEIGHT = -3f;
 
-	public static string EVENT_LABEL = "Event";
- 
+	public static float P_HEIGHT_LIMIT = 15;
+
+	public static int MODE_RULE = 0;
+	public static int MODE_COND = 1;
+
+	public static string RULE_LABEL = "Rule List:";
+	public static string COND_LABEL = "Given That:";
+	//--------------------------------------------------------------------------------------------------
+
+	public static int TAB_PROBLEMS	 = 0;
+	public static int TAB_EVENTS	 = 1;
+	public static int TAB_RULES		 = 2; 
+	public static int TAB_CONDITIONS = 3; 
+
+	//--------------------------------------------------------------------------------------------------
+
+	public static float P_PROBDISTANCE = 27f;
+
+	public static int PROBLEM_PAGE_LIST = 0;
+	public static int PROBLEM_PAGE_DETAIL = 1;
+
+	public static int PROBLEM_ANS_MODE_SSPACE 	= 0;
+	public static int PROBLEM_ANS_MODE_CHANCE 	= 1;
+	public static int PROBLEM_ANS_MODE_INPUT 	= 2;
+	public static int PROBLEM_ANS_MODE_CHANCEINP= 3;
+
+	public static string PROBLEM_ANS_TEXT_CHANCE = 
+		"Current Answer: {0}/{1} ({2}%)";
+
+	public static string PROBLEM_ANS_TEXT_SSPACE = 
+		"Current Answer: {0} possible outcomes";
+
+	public static string PROBLEM_ANS_TEXT_COND_SSPACE = 
+		"Current Answer: {0} valid outcomes";
+
+	public static string PROBLEM_ANS_TEXT_INVALID = 
+		"Current Answer: N/A";
+
+	public static string PROBLEM_RES_TEXT_RIGHT = 
+		"Correct!";
+
+	public static string PROBLEM_RES_TEXT_WRONG = 
+		"Not quite right. Keep trying!";
+
+	public static string PROBLEM_RES_TEXT_REQ_FALSE = 
+		"Requirements not fulfilled.";
+	
+	//--------------------------------------------------------------------------------------------------
+
 	public static string SINGLE_TOOLTIP =
 		"{0} must fulfill the rule:";
 
 	public static string CHANCE_TEXT = 
 		"Probability: {0}/{1} ({2}%)";
 
+	public static string CONDITION_TEXT = 
+		"{0}/{1} outcomes fulfill the conditions";
+
 	public static string SAMPLESPACE_TEXT = 
-		"{0} Possible Combinations";
+		"{0} possible outcomes";
+
+	public static string INVALID_TEXT = 
+		"N/A";
 
 	//--------------------------------------------------------------------------------------------------
 
 	public static string TYPE_LABEL = "Type";
 	public static List<string> TYPE_OPTIONS = new List<string>{
-		"Select one",
+		"Select variable type",
 		"Event",
 		"Value"
 	};
@@ -34,26 +87,35 @@ public class C : MonoBehaviour {
 
 	//--------------------------------------------------------------------------------------------------
 
+	public static string EVENT_LABEL = "Event";
+	public static string EVENT_DEFAULT_OPTION = "Select an event";
+	public static int EVENT_SELECT = 0;
+
+	//--------------------------------------------------------------------------------------------------
 	public static string VALUE_LABEL = "Value Type";
 	public static List<string> VALUE_OPTIONS = new List<string>{
+		"Select value type",
 		"Dice",
 		"Coin",
 		"Card",
 		"Event",
 		"Number"
 	};
+
 	public static List<string> VALUE_TOOLTIP = new List<string>{
+		"Select a value type",
 		"For values >6, use Number instead",
-		"Heads = 1, Tails = 0. For multiple Heads, use Number instead",
-		"",
-		"True = 1, False = 0. For multiple Trues, use Number instead",
+		"Tails = 0, Heads = 1.\nFor multiple Heads, use Number instead",
+		"Diamonds < Clubs < Hearts < Spades",
+		"Fail = 0, Success = 1.\nFor multiple Successes, use Number instead",
 		"",
 	};
-	public static int VAL_DICE   = 0; 
-	public static int VAL_COIN 	 = 1;
-	public static int VAL_CARD 	 = 2;
-	public static int VAL_EVENT  = 3;
-	public static int VAL_NUMBER = 4;
+	public static int VAL_SELECT = 0;
+	public static int VAL_DICE   = 1; 
+	public static int VAL_COIN 	 = 2;
+	public static int VAL_CARD 	 = 3;
+	public static int VAL_EVENT  = 4;
+	public static int VAL_NUMBER = 5;
 
 	//--------------------------------------------------------------------------------------------------
  
@@ -66,10 +128,10 @@ public class C : MonoBehaviour {
 	public static List<string> VAL_OPTIONS_COIN = new List<string>{"Tails","Heads"};
 
 	public static List<string> VAL_CARD_SUIT = new List<string>{
-		'\u2660'.ToString(), //spade
-		'\u2661'.ToString(), //heart
+		'\u2666'.ToString(), //diamond
 		'\u2663'.ToString(), //club
-		'\u2662'.ToString()  //diamond
+		'\u2665'.ToString(), //heart
+		'\u2660'.ToString()  //spade
 	};
 
 	public static List<string> VAL_CARD_NUM = new List<string>{
@@ -78,10 +140,10 @@ public class C : MonoBehaviour {
 
 	public static List<string> VAL_OPTIONS_CARD_SUIT = new List<string>{
 		"Any suit",
-		string.Format("Spades ({0})"	,VAL_CARD_SUIT[0]),
-		string.Format("Hearts ({0})"	,VAL_CARD_SUIT[1]),
-		string.Format("Clubs ({0})" 	,VAL_CARD_SUIT[2]),
-		string.Format("Diamonds ({0})"	,VAL_CARD_SUIT[3]),
+		string.Format("Diamonds ({0})"	,VAL_CARD_SUIT[0]),
+		string.Format("Clubs ({0})"		,VAL_CARD_SUIT[1]),
+		string.Format("Hearts ({0})" 	,VAL_CARD_SUIT[2]),
+		string.Format("Spades ({0})"	,VAL_CARD_SUIT[3]),
 	};	
 	
 	public static List<string> VAL_OPTIONS_CARD_NUM = new List<string>{
@@ -101,6 +163,7 @@ public class C : MonoBehaviour {
 		"Smaller than",
 		"At least",
 		"At most",
+		"Is multiple of",
 	};
 	public static int LOG_EQUALS	= 0;
 	public static int LOG_NEQUAL 	= 1; 
@@ -108,6 +171,7 @@ public class C : MonoBehaviour {
 	public static int LOG_SMALLER 	= 3;
 	public static int LOG_ATLEAST 	= 4;
 	public static int LOG_ATMOST 	= 5;
+	public static int LOG_MULTIPLE 	= 6;
 
 	//--------------------------------------------------------------------------------------------------
 
@@ -161,10 +225,9 @@ public class C : MonoBehaviour {
 	public static int AGG_MIN	= 3;
 
 	//--------------------------------------------------------------------------------------------------
- 
+
 	public static int VARIABLE_ALL	= 0;
 	public static int VARIABLE_ATLEAST	= 1;
 	public static int VARIABLE_ATMOST	= 2; 
 
-	//--------------------------------------------------------------------------------------------------
 }

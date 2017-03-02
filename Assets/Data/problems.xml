@@ -1,0 +1,513 @@
+<ProblemList>
+
+	<!--
+	<ProblemSet ID = "[Id here]">
+		<Title>Problemset title</Title> 
+ 
+		<Problem ID = "[Id here]">
+			<Title>Problem title</Title>
+			<Content>
+<![CDATA[]]>
+			</Content>
+			<Objective>
+<![CDATA[]]>
+			</Objective>
+			<Requirements>
+<![CDATA[]]>
+			</Requirements>
+			<AnswerType> 
+				0 = sample space
+				1 = rule chance
+				2 = single input
+				3 = double input
+			</AnswerType>
+			<Answer></Answer>
+			<Answer2></Answer2> //if rule or double input
+		</Problem>
+	--> 
+
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+	<ProblemSet ID = "tut-basic">
+		<Title>Tutorial: Basics</Title>  
+		 
+		<Problem ID = "addevent">
+			<Title>Adding Events</Title>
+			<Content>
+<![CDATA[Welcome to OddEasy!
+
+In OddEasy, probability problems are often split into two parts: the <i>events</i> (such as a dice roll or coin toss), and the <i>rules</i> (such as 'the number obtained is larger than 3' or 'the coin lands on Heads').
+
+Let's start with the events. For our first task, go to the Events tab above and add a new event. 
+
+After adding an event, click the generate button. This will generate the sample space of the events we've added.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of a dice roll.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>6</Answer>
+		</Problem> 
+		
+		<Problem ID = "addrules">
+			<Title>Adding Rules</Title>
+			<Content>
+<![CDATA[Great job! We've generated the sample space of a dice roll - there are six possible outcomes, to be precise. Now we shall attempt to apply <i>rules</i> to our events.
+
+Then go to the Rules tab above and add a new rule. Rules consists of two variables and a comparator between them. You can modify the variables by clicking them.
+
+Let's calculate the chance of the roll event resulting in a 1. Set the <i>left</i> variable to Event -> Dice A, and set the <i>right</i> variable to Value -> Dice -> 1. ]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the possibility of a dice roll resulting in 1.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>1</Answer>
+			<Answer2>6</Answer2>
+		</Problem>
+		
+		
+		<Problem ID = "comparator">
+			<Title>Comparators</Title>
+			<Content>
+<![CDATA[As you have seen, one of the key parts of a rule in OddEasy is the <i>comparison</i> between two variables. 
+
+There are various comparators for us to choose from. Try to see which comparison methods are available, and understand what they mean.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the possibility of a dice roll resulting in a multiple of 3.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>2</Answer>
+			<Answer2>6</Answer2>
+		</Problem>
+		 
+		<Problem ID = "twoevents">
+			<Title>Comparing Two Events</Title>
+			<Content>
+<![CDATA[Of course, you can have a rule perform a comparison between events. Simply set the second variable's type into Event instead of Value.
+
+Add another dice event and generate. Then, modify the right variable of the rule so that it also refers to an event.]]>
+			</Content>
+			<Objective>
+<![CDATA[Given two dice rolls A and B, determine the possibility of Dice A being larger than Dice B.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>15</Answer>
+			<Answer2>36</Answer2>
+		</Problem>
+		
+		<Problem ID = "eventtypes">
+			<Title>Event Types</Title>
+			<Content>
+<![CDATA[Probability problems tend to involve various types of events other than dices. Here in OddEasy, we support five <i>event types</i>. 
+
+The first three types are 'common' events: A <i>dice</i> roll, <i>coin</i> flip, and a playing <i>card</i> pick. These are the events that are often found in problems, and each event has its own number of possible outcomes. 
+
+Let us try using these various event types together. Add two more events, set their types to coin and card respectively, and generate.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of a dice roll, a coin flip, and a card pick performed simultaneously.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>624</Answer>
+		</Problem> 
+		
+		<Problem ID = "cond">
+			<Title>Conditionals</Title>
+			<Content>
+<![CDATA[Some probabilistic problems may include <i>conditionals</i> - P(A|B), or "What is the probability of A <i>given</i> B?".
+
+For this, we have the <i>conditions</i> tab. It behaves very similarly to the rules tab, the only difference being that instead of affecting the probability, it instead affects the sample space.
+
+Generate two dices, A and B. Try to interact with conditions to better understand how they work.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of dice A being less than 2 given that dice B is larger than 2.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>1</Answer>
+			<Answer2>6</Answer2>
+		</Problem>
+		
+		<Problem ID = "basictest">
+			<Title>Test: Basics</Title>
+			<Content>
+<![CDATA[Congratulations! You've grasped the basics of using OddEasy. Try solving this question to test your understanding.
+
+A dice is rolled together with a coin flip. Determine the chance of rolling 6 on the dice, as well as the coins resulting in heads.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of the dice resulting in 6, and the coin resulting in Heads.]]>
+			</Objective>
+			<AnswerType>2</AnswerType>
+			<Answer>1</Answer>
+			<Answer2>12</Answer2>
+		</Problem>
+		
+	</ProblemSet>
+
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+	<ProblemSet ID = "tut-advanced">
+		<Title>Tutorial: Advanced</Title>   
+		
+		<Problem ID = "eventtypesadvanced">
+			<Title>Event Types: Advanced</Title>
+			<Content>
+<![CDATA[While the first three event types are commonly used, a lot of problems tend to specify their own events. For those problems, we use one of the remaining two types.
+ 
+<i>Random Event</i> allows you to specify an event which has an A/B chance of occuring, while <i>Random Number</i> allows you to pick a random number from A to B. Unlike the first three types, these two are flexible and can be modified according to the situation.
+ 
+<i>Note: While Random Events only have two outcomes (success or fail) regardless of possibility, events with A/B chance of occuring will have B outcomes in OddEasy for simplicity purposes</i>.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of an event with 1/3 chance of occuring, and a random number between 1 and 50.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>150</Answer>
+		</Problem> 
+		
+		<Problem ID = "eventquantity">
+			<Title>Multi-Events</Title>
+			<Content>
+<![CDATA[When multiples of the same event is required (such as two identical dice rolls, or four coin flips), you can simply increase the <i>amount</i> of events. We shall refer these events as Multi-Events.
+
+Try modifying the amount value of an event.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of 6 identical coin flips.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>64</Answer>
+		</Problem>
+
+		<Problem ID = "uniqueevents">
+			<Title>Unique Events</Title>
+			<Content>
+<![CDATA[Multi-events can be described as simply performing the event multiple times. As such, different sub-events may have the same value.
+
+While this works well with dice rolls and coin flips (It's normal to get the same results from a dice roll), there may be cases in which you do not want duplicate results - such as when you're picking multiple cards from the same deck, or taking several objects out of a bag of items at once. 
+
+As such, event types <i>Card Pick</i> and <i>Random Number</i> has a <i>Unique</i> button which you can activate. Unique multi-events are guaranteed to have unique outcomes for each sub-event.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of taking two cards out of a single deck of card.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>2652</Answer>
+		</Problem> 
+		
+		<Problem ID = "aggregate">
+			<Title>Multi-Events as variables</Title>
+			<Content>
+<![CDATA[One of the most powerful functions for rules in OddEasy is the ability to use multi-events as variables. Since multi-events contain multiple sub-events, you can specify how exactly these sub-events interact with the rule.
+
+Some methods such as <i>Sum</i> and <i>Max</i> aggregates the multi-event into a single value, while some others such as <i>Apply to each</i>, <i>Any</i> or <i>None</i> applies the rule to several sub-events.
+
+Generate four dice rolls. Try to see what selection and aggregation methods are available, and understand how they work.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the possibility of the <i>sum</i> of four dice rolls being <i>larger</i> than 18.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>126</Answer>
+			<Answer2>1296</Answer2>
+		</Problem> 
+		
+		<Problem ID = "operator">
+			<Title>Rule Operators</Title>
+			<Content>
+<![CDATA[Often times, a single rule is not enough to simulate a probabilistic problem's condition. In which case, you need <i>operators</i> - a special rule to combine different rules: <i>And, Or, or Not</i>.
+
+The dropdown next to the "Add new" button allows you to select whether to add a rule or an operator. Clicking on the + button on operators allow you to add existing rules to them, and the - button removes the rule from the operator. 
+
+Generate two dice rolls. Try to experiment with operators to understand how to use them.
+
+<i>Note: By default, all the rules at root level are combined with an AND operator.</i>]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of both dices <i>not</i> being equal, or their sum being larger than 8.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>32</Answer>
+			<Answer2>36</Answer2>
+		</Problem> 
+		
+		<Problem ID = "otherprob1">
+			<Title>Other Problem Types (1)</Title>
+			<Content>
+<![CDATA[Not every problem in OddEasy needs to be simulated! Some problems, such as this one, require you to answer with a specific number.
+
+Your friend rolled a dice three times, and told you how many different outcomes he could've gotten from those rolls. He challenges you to generate an even larger number of possible outcomes, but all you have right now is a coin.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine how many coin flips are necessary to have a larger sample space than 3 dice rolls.]]>
+			</Objective>
+			<AnswerType>2</AnswerType> 
+			<Answer>4</Answer>
+		</Problem>
+		
+		<Problem ID = "otherprob2">
+			<Title>Other Problem Types (2)</Title>
+			<Content>
+<![CDATA[Lastly, some problems will also require you to answer with a fraction (A/B).
+
+A fair coin is tossed 15 times, and its results are observed.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of having 15 coins all result in heads.]]>
+			</Objective>
+			<AnswerType>3</AnswerType> 
+			<Answer>1</Answer>
+			<Answer2>32768</Answer2>
+		</Problem>
+		 
+		<Problem ID = "advancedtest">
+			<Title>Test: Advanced</Title>
+			<Content>
+<![CDATA[Congratulations! Now that you've mastered events and rules, you've mastered simulating probabilistic scenarions using OddEasy. Try solving this problem to test your understanding.
+
+Two dices are rolled. What is the probability of both of them having an odd sum, or both of them resulting in the same number?
+
+<i>Tip: Holding shift over a rule will allow you to see the results of that rule only.</i>]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of the scenario above.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>24</Answer>
+			<Answer2>36</Answer2>
+		</Problem> 
+		
+	</ProblemSet> 
+
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+	<ProblemSet ID = "basic-questions">
+		<Title>Basic Questions</Title>  
+		
+		<Problem ID = "eventtest">
+			<Title> Sample space</Title>
+			<Content>
+<![CDATA[Tickets numbered 21 to 30 are mixed up, and three are drawn in order. Afterwards, a coin is flipped twice.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the sample space size of the probabilistic scenario above.]]>
+			</Objective>
+			<AnswerType>0</AnswerType>
+			<Answer>2880</Answer>
+		</Problem> 
+		
+		<Problem ID = "card">
+			<Title>Card Trick</Title>
+			<Content>
+<![CDATA[Your friend wishes to show you a magic trick. He asks you to pick a random card from a deck, and he will guess both the card's number and suit. He tells you that at least one of those guesses will be correct.]]>
+			</Content>
+			<Objective>
+<![CDATA[Assuming your friend is simply guessing randomly, determine the probability of his guess being correct.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>16</Answer>
+			<Answer2>52</Answer2>
+		</Problem> 
+		
+		<Problem ID = "coinflip">
+			<Title>Coin Certainty (1)</Title>
+			<Content>
+<![CDATA[Due to boredom, Ben decided to repeatedly flip a coin to pass the time. Coincidentally, he managed to get Tails multiple times in a row. 
+
+Interested by this peculiar results, he wonders how many more flips he needs to do to have a decent confidence that at least one of them will be heads. ]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine how many coin flips are necessary to gain 95% certainty in getting at least one Heads.]]>
+			</Objective>
+			<AnswerType>2</AnswerType> 
+			<Answer>5</Answer>
+		</Problem> 
+		
+		<Problem ID = "coinflip2">
+			<Title>Coin Certainty (2)</Title>
+			<Content>
+<![CDATA[Still fascinated with his peculiar luck earlier, Ben wonders what were the chances of only getting Heads after a certain number of coin flips.
+
+If you continously flip a coin until you receive Heads, what are the chances of having to flip it at least 4 times?]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the chance of receiving your first heads only on your 4th flip or above.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>1</Answer>
+			<Answer2>8</Answer2>
+		</Problem> 
+		
+		<Problem ID = "coinflip3">
+			<Title>Coin Certainty (3)</Title>
+			<Content>
+<![CDATA[Right when he thought he's done thinking about imaginary coin flips, Ben managed to come up with one last question regarding coins.
+
+Since fair coins have a 50/50 chance of resulting in heads or tails, it's only natural that you expect 10 coin flips to result in 5 heads and 5 tails. However, what exactly is the chance of receiving <i>precisely</i> that amount of heads and tails?]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the chance of receiving exactly 5 heads and 5 tails from 10 coin flips.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>252</Answer>
+			<Answer2>1024</Answer2>
+		</Problem> 
+		
+		<Problem ID = "coinflip4">
+			<Title>Coin Certainty (4)</Title>
+			<Content>
+<![CDATA["One <i>last</i> question, for real this time!" Ben thought to himself.
+
+You have helped Ben calculate the chance of receiving <i>precisely</i> 5 heads and 5 tails before. But now he wonders: What about outcomes that are close to the 5:5 ratio?
+
+That is, given ten flips of a fair coin, what is the chance of getting a 4:6, 5:5 or 6:4 ratio of heads and tails?]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the chance of receiving either 4 heads + 6 tails, 5 heads + 5 tails, or 6 heads + 4 tails from 10 coin flips.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>672</Answer>
+			<Answer2>1024</Answer2>
+		</Problem> 
+		
+	</ProblemSet>
+
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	
+	<ProblemSet ID = "marbles">
+		<Title>Bag of Marbles</Title> 
+		 
+		<Problem ID = "marble1">
+			<Title>Bag of marbles (1)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white. You take out <i>two</i> marbles from the bag in order, without returning any back in.
+
+<i>Hint: think of a way to use one of the event types to represent the bag of marbles</i>]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of one of the marbles you took being red.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>54</Answer>
+			<Answer2>110</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble2">
+			<Title>Bag of marbles (2)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white. You take out <i>two</i> marbles from the bag in order, without returning any back in.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of both of the marbles you took being blue.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>12</Answer>
+			<Answer2>110</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble3">
+			<Title>Bag of marbles (3)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white. You take out <i>two</i> marbles from the bag in order, without returning any back in.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability both the marbles you picked being of different colors.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>80</Answer>
+			<Answer2>110</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble4">
+			<Title>Bag of marbles (4)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white. You take out <i>two</i> marbles from the bag in order, without returning any back in.]]>
+			</Content>
+			<Objective>
+<![CDATA[Given that the first marble you picked was red, determine the probability of the second marble you picked to also be red.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>6</Answer>
+			<Answer2>30</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble5">
+			<Title>Bag of marbles (5)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white. 
+
+You take out <i>three</i> marbles from the bag, in order.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability that all the marbles you took were of different colors.]]>
+			</Objective>
+			<AnswerType>1</AnswerType> 
+			<Answer>288</Answer>
+			<Answer2>990</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble6">
+			<Title>Bag of marbles (6)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white.
+
+You take out <i>three</i> marbles from the bag, in order. Surprisingly, all of them were blue.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of that specific scenario happening.]]>
+			</Objective>
+			<AnswerType>3</AnswerType> 
+			<Answer>24</Answer>
+			<Answer2>990</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble7">
+			<Title>Bag of marbles (7)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white.
+
+You take out <i>four</i> marbles from the bag, in order.]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the probability of all the marbles you took being blue.]]>
+			</Objective>
+			<AnswerType>3</AnswerType> 
+			<Answer>24</Answer>
+			<Answer2>7920</Answer2>
+		</Problem>
+		
+		<Problem ID = "marble8">
+			<Title>Bag of marbles (8)</Title>
+			<Content>
+<![CDATA[You have a bag of 11 colored marbles - three of them are red, four are blue, four are white.
+
+How many marbles do you need to take before you are sure that <i>at least one</i> of the marbles you took weren't red?]]>
+			</Content>
+			<Objective>
+<![CDATA[Determine the number of marbles you need to take to be 100% sure that at least one of the marbles you took weren't red.]]>
+			</Objective>
+			<AnswerType>2</AnswerType> 
+			<Answer>4</Answer> 
+		</Problem>
+		
+	</ProblemSet>
+	
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	
+	<ProblemSet ID = "moretocome">
+		<Title>More to come!</Title> 
+	</ProblemSet>
+	
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	<!--
+	<ProblemSet ID = "challenges">
+		<Title>Challenges</Title> 
+	</ProblemSet>
+	-->
+
+	<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--> 
+
+</ProblemList>

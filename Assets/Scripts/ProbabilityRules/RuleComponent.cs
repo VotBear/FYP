@@ -18,6 +18,7 @@ public class RuleComponent : MonoBehaviour {
 
 	protected virtual void Start(){
 		children = new List<RuleComponent>();
+		ChangeButton();
 	}
 
 	public void SetIndexNumber(int idx){
@@ -97,13 +98,19 @@ public class RuleComponent : MonoBehaviour {
 
 	public virtual void RemoveRule(){
 		if (parentRule) parentRule.RemoveChild(this.indexNumber);
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 		RuleListManager.Instance.ReturnToRoot(this);
 	}
 
 	public virtual void DeleteRule(){
 		if (parentRule) parentRule.RemoveChild(this.indexNumber);
 		RuleListManager.Instance.UpdateVisualization();
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 		Destroy(this.gameObject);
+	}
+
+	public virtual void ResetRule(){ 
+		for (int i=0; i<children.Count; ++i) children[i].ResetRule();
 	}
 
 	// -1: invalid

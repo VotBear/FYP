@@ -12,7 +12,7 @@ public class OperatorNot : RuleOperator {
 		if (children.Count > limit){
 			temp = children[children.Count-1];
 			children.RemoveAt(children.Count-1);
-			temp.gameObject.SetActive(false);
+			temp.transform.localPosition = new Vector3(temp.transform.localPosition.x, temp.transform.localPosition.y, -200);
 		}
 	}
 
@@ -20,7 +20,7 @@ public class OperatorNot : RuleOperator {
 	{
 		base.RemoveChild (indexToRemove);
 		if (children.Count <= limit){
-			temp.gameObject.SetActive(true);
+			temp.transform.localPosition = new Vector3(temp.transform.localPosition.x, temp.transform.localPosition.y, 0);
 			AddChild(temp);
 		}
 	} 

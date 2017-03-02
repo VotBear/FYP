@@ -30,17 +30,14 @@ public class PE_Event : ProbabilityEvent {
 		});
 	} 
 
-	int FindGCD(int a, int b){
-		return b == 0? a : FindGCD(b, a%b); 
-	}
 
 	void SimplifyFraction(){
-		int gcd = FindGCD(numerator, denominator);
+		int gcd = Util.GetGCD(numerator, denominator);
 		eff_num = numerator/gcd;
 		eff_den = denominator/gcd;
 		typeSize = eff_den;
 		ResetAmountValues();
-		SendMessageUpwards("UpdatePossibleCombinations");
+		BroadcastManager.Instance.EventUpdated();
 	}
 
 	void OnNumChange(InputField numIF){

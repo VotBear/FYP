@@ -15,10 +15,10 @@ public class UniqueProbabilityEvent : ProbabilityEvent {
 		CheckToggleInteractable();
 	}
 
-	public virtual void OnUniqueToggle(bool tog){
-		//Debug.Log(tog);
+	public virtual void OnUniqueToggle(bool tog){ 
 		duplicate = tog; 
-		SendMessageUpwards("UpdatePossibleCombinations"); 
+		BroadcastManager.Instance.EventUpdated(); 
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 	}
 
 	protected void CheckToggleInteractable(){
@@ -64,7 +64,7 @@ public class UniqueProbabilityEvent : ProbabilityEvent {
 			ret.Add(remainder / divisor);
 			remainder = remainder % divisor;
 			if (!duplicate) div -= 1;
-		}
+		} 
 
 		List<int> usedValues = new List<int>();
 
@@ -75,8 +75,9 @@ public class UniqueProbabilityEvent : ProbabilityEvent {
 					if (used <= ret[i]) ret[i] += 1;
 				} 
 				usedValues.Add(ret[i]);
+				usedValues.Sort();
 			}  
-		}
+		} 
 
 		return ret;
 	}

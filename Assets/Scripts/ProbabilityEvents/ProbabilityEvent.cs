@@ -31,8 +31,7 @@ public class ProbabilityEvent : MonoBehaviour {
 		amountSelector.onValueChanged.AddListener(delegate {
 			OnAmountChange(amountSelector);
 		});   
-		//SendMessageUpwards("UpdatePossibleCombinations"); 
-		//Debug.Log("Start Complete");
+		BroadcastManager.Instance.EventUpdated();  
 	}
 
 	public virtual void ResetAmountValues(){ 
@@ -57,22 +56,26 @@ public class ProbabilityEvent : MonoBehaviour {
 
 	public void OnTypeChange(Dropdown typeDD) {
 		//this.type = typeDD.value;
-		//SendMessageUpwards("UpdatePossibleCombinations");
+		//BroadcastManager.Instance.EventUpdated();
 		SendMessageUpwards("ChangeEvent", this.indexNumber); 
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 	}
 
 	public void OnNameChange(InputField nameIF){
 		this.name = nameIF.text;
-		SendMessageUpwards("UpdatePossibleCombinations"); 
+		BroadcastManager.Instance.EventUpdated(); 
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 	}
 
 	public virtual void OnAmountChange(Dropdown amountDD){
 		this.amount = amountDD.value + 1;
-		SendMessageUpwards("UpdatePossibleCombinations"); 
+		BroadcastManager.Instance.EventUpdated(); 
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 	}
 
 	public void DeleteEvent(){
 		SendMessageUpwards("RemoveEvent", this.indexNumber);
+		SfxManager.Instance.PlaySfx(SfxManager.SFX_TICK);
 		Destroy(this.gameObject);
 	}
 
